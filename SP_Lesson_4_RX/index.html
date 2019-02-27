@@ -1,71 +1,30 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>SP_Lesson_4_RX</title>
-    <meta http-equiv="Content-Type" content="text/html"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="./style.css"/>
-</head>
-<body>
-    <script src="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
-
-    <!--
-        *** 7 button: ***
-        1 - console 1/4 sec
-          1.1 - stopTimer
-        2 - console 1/2 sec
-          2.1 - stopTimer
-        3 - console 1 sec
-          3.1 - stopTimer
-        4 - ResetTimer
-    -->
-
-    <div class="container">
-        <h1 id="count"></h1>
-        <button>3</button>
-        <button id="stopBtn">Stop</button>
+<html>
+  <head>
+    <title>Timer RX</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="block">
+      <h1>Таймер #1 (1 сек)</h1>
+      <button name="1" class="hidden restart">Отключить таймер</button>
+      <button name="1" class="hidden stop">Стоп</button>
+      <button name="1" class="start">Старт</button>
     </div>
-
-    <script>
-
-        const button = document.querySelector('button');
-        const stopBtn = document.querySelector('#stopBtn');
-
-        const obs$ = Rx.Observable.fromEvent(button, 'click');
-        const interval1 = Rx.Observable.interval(1000);
-
-        obs$.switchMap(
-            () => {
-                console.log("Новое нажатие на кнопку");
-                return interval1
-            }
-        ).subscribe(
-            (e) => console.log(`Таймер #3: ${e}`)
-        );
-
-
-        /* */
-
-        // Rx.Observable.fromEvent(button, 'click')
-        //     .throttleTime(2000)
-        //     .subscribe(() => console.log("E"))
-        /*
-        const timer1$ = Rx.Observable.interval(1000);
-        const timer2$ = Rx.Observable.interval(2000);
-        const timer3$ = Rx.Observable.interval(3000);
-        Rx.Observable
-            .combineLatest(timer1$,timer2$,timer3$)
-            .take(10)
-            .subscribe(() => console.info("E"));
-        */
-
-
-
-
-
-
-    </script>
-
-</body>
+    <div class="block">
+      <h1>Таймер #2 (1/2 сек)</h1>
+      <button name="2" class="hidden restart">Отключить таймер</button>
+      <button name="2" class="hidden stop">Стоп</button>
+      <button name="2" class="start">Старт</button>
+    </div>
+    <div class="block">
+      <h1>Таймер #3 (1/4 сек)</h1>
+      <button name="3" class="hidden restart">Отключить таймер</button>
+      <button name="3" class="hidden stop">Стоп</button>
+      <button name="3" class="start">Старт</button>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
 </html>
