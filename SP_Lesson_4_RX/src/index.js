@@ -1,6 +1,6 @@
 import "./styles.css";
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
+import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
 import "rxjs/add/observable/of";
 import "rxjs/add/observable/fromEvent";
 import "rxjs/add/operator/scan";
@@ -28,9 +28,15 @@ const startBtn = document.getElementsByClassName("start");
 [].forEach.call(startBtn, btn => {
     Observable.fromEvent(btn, "click").subscribe(() => {
         switch (btn.name) {
-            case "1": startTimer(timer1); break;
-            case "2": startTimer(timer2); break;
-            case "3": startTimer(timer3); break;
+            case "1":
+                startTimer(timer1);
+                break;
+            case "2":
+                startTimer(timer2);
+                break;
+            case "3":
+                startTimer(timer3);
+                break;
         }
         $(`.start[name=${btn.name}]`).hide();
         $(`.restart[name=${btn.name}]`).show();
@@ -42,9 +48,15 @@ const stopBtn = document.getElementsByClassName("stop");
 [].forEach.call(stopBtn, btn => {
     Observable.fromEvent(btn, "click").subscribe(() => {
         switch (btn.name) {
-            case "1": checkPauseTimer(timer1, btn.name); break;
-            case "2": checkPauseTimer(timer2, btn.name); break;
-            case "3": checkPauseTimer(timer3, btn.name); break;
+            case "1":
+                checkPauseTimer(timer1, btn.name);
+                break;
+            case "2":
+                checkPauseTimer(timer2, btn.name);
+                break;
+            case "3":
+                checkPauseTimer(timer3, btn.name);
+                break;
         }
     });
 });
@@ -70,9 +82,15 @@ const restartBtn = document.getElementsByClassName("restart");
 [].forEach.call(restartBtn, btn => {
     Observable.fromEvent(btn, "click").subscribe(() => {
         switch (btn.name) {
-            case "1": checkRestartTimer(timer1, btn.name); break;
-            case "2": checkRestartTimer(timer2, btn.name); break;
-            case "3": checkRestartTimer(timer3, btn.name); break;
+            case "1":
+                checkRestartTimer(timer1, btn.name);
+                break;
+            case "2":
+                checkRestartTimer(timer2, btn.name);
+                break;
+            case "3":
+                checkRestartTimer(timer3, btn.name);
+                break;
         }
         $(`.start[name=${btn.name}]`).show();
         $(`.restart[name=${btn.name}]`).hide();
@@ -96,4 +114,3 @@ let startTimer = object => {
 let outputTimer = (obj, val) => {
     console.log(`${obj.title}: ${obj.currentValue = val + obj.pauseValue}`);
 };
-
