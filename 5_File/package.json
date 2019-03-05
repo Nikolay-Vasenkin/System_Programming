@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "express-fileupload": "^1.1.1-alpha.3",
     "fs": "^0.0.1-security",
-    "http": "^0.0.0"
+    "http": "^0.0.0",
+    "iconv-lite": "^0.4.24"
   }
 }
