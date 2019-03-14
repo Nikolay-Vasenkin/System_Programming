@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="ru">
+    <title>***</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- CSS -->
+    <link href="./css/start.css" type="text/css" rel="stylesheet"/>
+    <!-- SCRIPT -->
+    <script src="./js/jquery_3.3.1.js"></script>
+</head>
+
+<body>
+    <input type="text" id="writer">
+    <ol></ol>
+<script>
+
+    $(document).ready(() => {
+
+        const arrayAnimals = ['Dog', 'Cat', 'Tiger', 'Duck', 'Elephant', 'Zebra', 'Lion'];
+
+        async function* autocomplete(str) {
+            const word = str.toLowerCase();
+            this.value = [];
+            for(let i in arrayAnimals){
+                if(arrayAnimals[i].toLowerCase().indexOf(word) !== -1){
+                    let findAnimal = arrayAnimals[i].toLowerCase().replace(word, `<b>${word}</b>`);
+                    this.value.push(findAnimal);
+                }
+            }
+            return this.value;
+        }
+
+        $('#writer').keyup(() => {
+            const value = $('#writer').val().trim();
+            const generation = autocomplete(value);
+            generation.next().then(res => writeResul(res.value));
+        });
+
+        const writeResul = (result) => {
+            $('ol').html("");
+            for(let i in result){
+                $('ol').append(`<li>${result[i]}</li>`);
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
